@@ -2,15 +2,17 @@ import { X, User, Mail } from "lucide-react";
 import { FormEvent } from "react";
 
 interface ConfirmModalProps {
-  createTrip: () => void;
+  createTrip: (event: FormEvent<HTMLFormElement>) => void;
   closeTripModal: () => void;
-  addGuest: (event: FormEvent<HTMLFormElement>) => void;
+  setownerName: (value: string) => void;
+  setownerEmail: (value: string) => void;
 }
 
 export function ConfirmModal({
   createTrip,
   closeTripModal,
-  addGuest,
+  setownerName,
+  setownerEmail,
 }: ConfirmModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
@@ -37,12 +39,13 @@ export function ConfirmModal({
           </p>
         </div>
 
-        <form onSubmit={addGuest} className="space-y-3">
+        <form onSubmit={createTrip} className="space-y-3">
           <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
             <User className="text-zinc-400 size-5" />
             <input
               type="text"
               name="name"
+              onChange={(event) => setownerName(event.target.value)}
               className="bg-transparent text-lg placheholder-zinc-400 outline-none flex-1"
               placeholder="Seu nome completo"
             />
@@ -52,12 +55,12 @@ export function ConfirmModal({
             <input
               type="email"
               name="email"
+              onChange={(event) => setownerEmail(event.target.value)}
               className="bg-transparent text-lg placheholder-zinc-400 outline-none flex-1"
               placeholder="Seu e-mail pessoal"
             />
           </div>
           <button
-            onClick={createTrip}
             type="submit"
             className="bg-lime-300 text-lime-950 rounded-lg px-5 h-11 font-medium flex justify-center items-center gap-2 w-full hover:bg-lime-400"
           >

@@ -10,3 +10,7 @@
 input {
   color-scheme: dark;
 }
+
+:root {
+  --rdp-accent-color: #bef264;
+}

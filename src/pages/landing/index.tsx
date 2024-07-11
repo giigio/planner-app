@@ -4,6 +4,8 @@ import { InviteModal } from "./invite-modal";
 import { ConfirmModal } from "./confirm-modal";
 import { DestinationDate } from "./steps/destination-date";
 import { InviteGuests } from "./steps/invite-guests";
+import { DateRange } from "react-day-picker";
+import { api } from "../../lib/axios";
 
 export function Landing() {
   const navigate = useNavigate();
@@ -14,6 +16,11 @@ export function Landing() {
     "teste@teste.com",
   ]);
   const [confirmTripModal, setConfirmTripModal] = useState(false);
+
+  const [destination, setDestination] = useState("");
+  const [ownerName, setOwnerName] = useState("");
+  const [ownerEmail, setOwnerEmail] = useState("");
+  const [startDate, setStartDate] = useState<DateRange | undefined>();
 
   function openGuestInput() {
     setIsGuestInput(true);
@@ -39,10 +46,6 @@ export function Landing() {
     setConfirmTripModal(false);
   }
 
-  function createTrip() {
-    navigate("/trips/1");
-  }
-
   function addGuest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -65,6 +68,46 @@ export function Landing() {
     setInviteGuests(inviteGuests.filter((guest) => guest !== email));
   }
 
+  async function createTrip(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    console.log({
+      destination,
+      startDate,
+      inviteGuests,
+      ownerName,
+      ownerEmail,
+    });
+
+    if (!destination) {
+      return;
+    }
+
+    if (!startDate?.from || !startDate?.to) {
+      return;
+    }
+
+    if (inviteGuests.length === 0) {
+      return;
+    }
+
+    if (!ownerName || !ownerEmail) {
+      return;
+    }
+
+    const response = await api.post("/trips", {
+      destination: destination,
+      starts_at: startDate.from,
+      ends_at: startDate.to,
+      emails_to_invite: inviteGuests,
+      owner_name: ownerName,
+      owner_email: ownerEmail,
+    });
+
+    const { tripId } = response.data;
+    navigate(`/trips/${tripId}`);
+  }
+
   return (
     <>
       <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
@@ -78,9 +121,12 @@ export function Landing() {
 
           <div className="space-y-4">
             <DestinationDate
+              startDate={startDate}
+              setStartDate={setStartDate}
               isGuestInput={isGuestInput}
               closeGuestInput={closeGuestInput}
               openGuestInput={openGuestInput}
+              setDestination={setDestination}
             />
 
             {isGuestInput && (
@@ -118,9 +164,10 @@ export function Landing() {
 
         {confirmTripModal && (
           <ConfirmModal
-            addGuest={addGuest}
             closeTripModal={closeTripModal}
             createTrip={createTrip}
+            setownerName={setOwnerName}
+            setownerEmail={setOwnerEmail}
           />
         )}
       </div>
