@@ -22,7 +22,7 @@
 
 <h2>Backend</h2>
 <ol>
-  <li>O repositório do backend está disponível no repositório do GitHub:
+  <li>O repositório do backend está disponível em:
     <pre><code>https://github.com/rocketseat-education/nlw-journey-nodejs</code></pre>
   </li>
 </ol>
