@@ -1,7 +1,7 @@
 <h1>Planejador de Viagens</h1>
 
-<p>Planner App foi parte do desafio da semana <strong>NLW</strong> realizado pela <strong><a href="https://github.com/rocketseat-education/" target="_blank">Rocketseat</a>🚀</strong>.</p>
-<p>Este projeto é uma aplicação web criada usando ReactJS, Vite e TypeScript. Ele permite que você planeje suas viagens, adicionando destino, convidados e atividades à realizar.</p>
+<p>Planner App foi parte do desafio da semana <strong>NLW Journey</strong> realizado pela <strong><a href="https://github.com/rocketseat-education/" target="_blank">Rocketseat</a>🚀</strong>.</p>
+<p>Este projeto é uma aplicação web que utiliza de ReactJS, Vite e TypeScript. Ele permite que você planeje suas viagens, adicionando destino, convidados e atividades à realizar.</p>
 
 <h2>Instalação</h2>
 
