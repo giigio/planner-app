@@ -3,6 +3,12 @@
 <p>Planner App foi parte do desafio da semana <strong>NLW Journey</strong> realizado pela <strong><a href="https://github.com/rocketseat-education/" target="_blank">Rocketseat</a>🚀</strong>.</p>
 <p>Este projeto é uma aplicação web que utiliza de ReactJS, Vite e TypeScript. Ele permite que você planeje suas viagens, adicionando destino, convidados e atividades à realizar.</p>
 
+<h2>Preview</h2>
+
+<p align="center">
+  <img src="https://github.com/Giigio/planner-app/blob/main/public/preview/planner-app-landing.png" width="400" />
+  <img src="https://github.com/Giigio/planner-app/blob/main/public/preview/planner-app-trip.png" width="400" />
+</p>
 <h2>Instalação</h2>
 
 <ol>
